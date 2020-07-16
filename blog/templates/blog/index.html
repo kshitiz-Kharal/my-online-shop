@@ -1,0 +1,43 @@
+{% extends 'blog/basic.html' %}
+{% block css %}
+{% comment %} img {
+    width: 300px;
+} {% endcomment %}
+.card11{
+  height: auto;
+}
+.card11
+{% endblock %}
+
+{% block body %}
+    
+
+  <div class="container mt-2">
+    <div class="row my-2">
+
+    {% for i in blogPosts %}
+
+    <div class="col-md-6">
+      <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative card11">
+        <div class="col p-4 d-flex flex-column position-static">
+          <strong class="d-inline-block mb-2 text-primary">Blog</strong>
+          <h6 class="mb-0">{{i.title}}</h6>
+          <div class="mb-1 text-muted">{{i.Published_date}}</div>
+          <p class="card-text mb-auto">{{i.head0}}</p>
+          <a href="/blog/blogpost/{{i.id}}" class="stretched-link">Continue reading</a>
+        </div>
+        <div class="col-auto d-none d-lg-block">
+         
+         <img src='/media/{{i.thumbnail}}' class="bd-placeholder-img" width="200" height="250" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Thumbnail">
+        </div>
+      </div>
+    </div>
+  {% if forloop.counter|divisibleby:2 and forloop.counter > 0 and not forloop.last %}
+    </div><div class="row my-2">
+  {% endif%}
+  {% endfor%}
+    </div>
+
+    
+
+{% endblock %}
