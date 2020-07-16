@@ -113,10 +113,12 @@ def checkout(request):
         update.save()
         thank = True
         id = order.order_id
-        print(id)
-        # return render(request, 'shop/checkout.html', {'thank': thank, 'id': id})
+        return render(request, 'shop/checkout.html', {'thank': thank, 'id': id})
         # request payment gateway to transfer the amount to your account after payment by the user
+    return render(request, 'shop/checkout.html')
+"""
 
+code to add paytm payment gateway currently not working
         data_dict = {
 
                 'MID': 'VMLsKh33374131769871',
@@ -131,7 +133,7 @@ def checkout(request):
         }
         data_dict['CHECKSUMHASH'] = checksum.generate_checksum(data_dict, MERCHANT_KEY)
         return render(request, 'shop/paytm.html', {'paarams_dict':data_dict})
-    return render(request, 'shop/checkout.html')
+    
 
 @csrf_exempt
 def handlerequest(request):
@@ -149,4 +151,5 @@ def handlerequest(request):
             print('order successful')
         else:
             print('order was not successful because' + response_dict['RESPMSGH'])
-    return render(request, 'shop/paymentstatus.html', {'reaponse ': response_dict})
+    return render(request, 'shop/paymentstatus.html', {'response ': response_dict})
+    """
